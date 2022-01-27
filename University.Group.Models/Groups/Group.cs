@@ -1,15 +1,14 @@
 ﻿namespace University.Group.Models.Groups
 {
-    internal class Group : StructureUnit
+    internal class Group
     {
-        public Group(string name, string director, int phoneNumber, string adress, string email, string info)
-        {
-            Name = name;
-            Director = director;
-            PhoneNumber = phoneNumber;
-            Address = adress;
-            Email = email;
-            AboutStructuralUnit = info;
-        }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Curator { get; set; }
+        public int Course { get; set; }
+        public string EducationDegree { get; set; }
+
+        public int FacultyId { get; set; }
+        public Faculties.Faculty Faculty { get; set; }
     }
 }
