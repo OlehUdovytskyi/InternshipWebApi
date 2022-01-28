@@ -1,17 +1,10 @@
 ﻿using System.Collections.Generic;
-using University.Group.Models.Departments;
+using University.Group.Models.Faculties;
 
-namespace University.Group.Models.Faculties
+namespace University.Group.Models.Departments
 {
-    public sealed class Faculty : IDepartment
+    internal class MockDepartment : IDepartment
     {
-        public string Name { get; set; }
-        public string Director { get; set; }
-        public uint PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string University { get; set; } = "ІФНТУНГ";
-
         public List<Departments.Department> GetDepartment
         {
             get
@@ -180,9 +173,5 @@ namespace University.Group.Models.Faculties
                 };
             }
         }
-
-        public override string ToString() => Name;
-
-
     }
 }
