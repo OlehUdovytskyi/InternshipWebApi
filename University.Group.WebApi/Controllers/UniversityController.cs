@@ -1,40 +1,61 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using University.Group.Models.Faculties;
-using System.Collections.Generic;
 
 namespace University.Group.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UniversityController : ControllerBase
+    public class UniversityController : Controller
     {
         private Models.University _myUniversity;
 
-        public UniversityController(Models.University newUniwersity) => _myUniversity = newUniwersity;
 
+        public UniversityController(Models.University newUniwersity)
+        {
+            _myUniversity = newUniwersity;
+        }
+        
 
         [HttpGet]
-        public Models.University GetUniversity() => _myUniversity;
+        public IActionResult GetResult()
+        {
+            return View("~/Views/University/University.cshtml", _myUniversity);
+        }
 
 
-        [HttpGet("GetFaculties")]
-        public IEnumerable<Faculty> GetFaculties() => _myUniversity.Faculties;
+        [HttpGet("GetFaculty/{name}")]
+        public IActionResult GetFaculties(string name)
+        {
+            return View("~/Views/University/Faculty.cshtml", _myUniversity.Faculties.Find(n => n.Name == name));
+        }
 
 
-        [HttpGet("GetDepartments/{id}")]
-        public IEnumerable<Models.Departments.Department> GetDepartments(int id) => _myUniversity.Faculties[id].GetDepartment;
+        [HttpGet("PostFaculty")]
+        public IActionResult PostFaculty()
+        {
+            return View("~/Views/University/FacultiForm.cshtml");
+        }
 
 
         [HttpPost("PostFaculty")]
-        public void PostFaculty([FromBody]Faculty newFaculty) => _myUniversity.Faculties.Add(newFaculty);
+        public string PostFaculty(Faculty newFaculty)
+        {
+            _myUniversity.Faculties.Add(newFaculty);
+            return "Add faculty";
+        }
 
 
         [HttpPut("{id}")]
-        public void PutFac(int id, [FromBody] Faculty newFaculty) => _myUniversity.Faculties[id] = newFaculty;
+        public void PutFaculty(int id, [FromBody] Faculty newFaculty)
+        {
+            _myUniversity.Faculties[id] = newFaculty;
+        }
 
 
         [HttpDelete("DeleteFaculty/{id}")]
-        public void DeleteFaculty(int id) => _myUniversity.Faculties.RemoveAt(id);
+        public void DeleteFaculty(int id)
+        {
+            _myUniversity.Faculties.RemoveAt(id);
+        }
     }
 }
