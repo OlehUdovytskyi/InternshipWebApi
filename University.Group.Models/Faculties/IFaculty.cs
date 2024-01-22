@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using University.Group.Models.Groups;
 
 namespace University.Group.Models.Faculties
 {
-    public interface IFaculty
+    interface IFaculty
     {
-        IEnumerable<IGroup> GetGroups();
+        List<Faculty> GetFaculty { get; }
     }
 }
