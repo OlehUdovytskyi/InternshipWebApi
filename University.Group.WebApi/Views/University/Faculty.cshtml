@@ -1,0 +1,43 @@
+﻿@model University.Group.Models.Faculties.Faculty
+@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+
+    <head>
+        <title>Univer.ua</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h2>Faculty</h2>
+        <p>Name @Model.Name </p>
+        <p>Director @Model.Director</p>
+        <p>Phone Number @Model.PhoneNumber</p>
+        <p>Address @Model.Address</p>
+        <p>Email @Model.Email</p>
+    
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Director</td>
+                <td>Pfone number</td>
+                <td>Email</td>
+                <td>Ofice nomber</td>
+            </tr>
+            @foreach(var d in Model.Departments)
+            {
+                <tr>
+                    <td>@d.Name</td>
+                    <td>@d.Director</td>
+                    <td>@d.PhoneNumber</td>
+                    <td>@d.Email</td>
+                    <td>@d.OfficeNumber</td>
+                </tr>
+            }
+        </table>
+
+    </body>
+
+</html>

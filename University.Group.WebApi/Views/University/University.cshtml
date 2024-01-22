@@ -1,0 +1,32 @@
+﻿@model University.Group.Models.University
+@{
+    Layout = null;
+}
+<!doctype html>
+
+<html>
+    <head>
+        <title>Univer.ua</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h2>University</h2>
+        <p>University @Model.Name </p>
+        <p>Rector @Model.Rector</p>
+
+        <Table>
+            <tr><td>Name</td><td>Director</td><td>Phone number</td><td>Address</td><<td>Email</td></tr>
+            @foreach(var f in Model.Faculties)
+            {
+                <tr>
+                    <td><a href="~/api/University/GetFaculty/@f.Name">@f.Name</a></td>
+                    <td>@f.Director</td>
+                    <td>@f.PhoneNumber</td>
+                    <td>@f.Address</td>
+                    <td>@f.Email</td>
+                </tr>
+            }
+        </Table>
+        <p><a href="~/api/University/PostFaculty">Add Faculty</a></p>
+    </body>
+</html>
